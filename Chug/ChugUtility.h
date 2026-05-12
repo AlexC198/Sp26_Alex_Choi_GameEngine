@@ -1,5 +1,7 @@
 #pragma once
 
+#include "pch.h"
+
 #ifdef CHUG_MSVC
 	#ifdef CHUG_LIB
 		#define CHUG_API __declspec(dllexport)
