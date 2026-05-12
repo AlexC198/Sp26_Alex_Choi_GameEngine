@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="CMakeLists.txt" />
+  </Folder>
+  <Project Path="Chug/Chug.vcxproj" Id="bf1aec72-8843-4043-9246-698c48e075d5" />
+  <Project Path="Sp26_Alex_Choi/Sp26_Alex_Choi.vcxproj" Id="7a984474-6935-48e9-91a8-31fcf323fbd1" />
+</Solution>
