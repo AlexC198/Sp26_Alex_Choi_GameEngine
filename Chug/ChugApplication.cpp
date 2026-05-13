@@ -18,8 +18,8 @@ namespace Chug
 
 	void ChugApplication::Run()
 	{
-		Window win;
-		win.Create({ 800,600 }, "Fall Game");
+		Window::Init();
+		Window::Get() -> Create({ 800,600 }, "Fall Game");
 
 		Initialize();
 
@@ -27,8 +27,8 @@ namespace Chug
 		{
 			Update();
 
-			win.SwapBuffers();
-			win.PollEvents();
+			Window::Get()->SwapBuffers();
+			Window::Get()->PollEvents();
 		}
 
 		Shutdown();

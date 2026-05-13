@@ -13,6 +13,20 @@ namespace Chug
 		#only_GLFW_is_supported
 #endif
 	}
+
+	void Window::Init()
+	{
+		if (!mInstance)
+		{
+			mInstance = std::unique_ptr<Window>{ new Window };
+		}
+	}
+
+	std::unique_ptr<Window>& Window::Get()
+	{
+		return mInstance;
+	}
+
 	void Window::Create(Dimensions dimensions, const std::string& windowName)
 	{
 		mImplementation->Create(dimensions, windowName);

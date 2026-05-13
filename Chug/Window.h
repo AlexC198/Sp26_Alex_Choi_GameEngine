@@ -11,14 +11,18 @@ namespace Chug
 	{
 	public:
 
-		Window();
-
+		static void Init();
+		static std::unique_ptr<Window>& Get();
 		void Create(Dimensions dimensions, const std::string & windowName);
 		Dimensions GetSize() const;
 
 		void SwapBuffers();
 		void PollEvents();
 	private:
+
+		Window();
+		inline static std::unique_ptr<Window> mInstance{ nullptr };
+
 		std::unique_ptr<WindowImplementation> mImplementation{ nullptr };
 	};
 }
