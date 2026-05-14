@@ -13,10 +13,11 @@ namespace Chug
 		Picture(const std::string& fileName);
 		void LoadImage(const std::string& fileName);
 		Dimensions GetDimensions() const;
-		void Bind();
 
 
 	private:
 		std::unique_ptr<PictureImplementation> mImplementation;
+		void Bind();
+
 	};
 }

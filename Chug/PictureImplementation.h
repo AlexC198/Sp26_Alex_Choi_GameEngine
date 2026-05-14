@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "ChugTypes.h"
 namespace Chug
 {
 	class PictureImplementation
@@ -11,4 +11,5 @@ namespace Chug
 		virtual void Bind() = 0;
 
 		virtual ~PictureImplementation() {};
+	};
 }

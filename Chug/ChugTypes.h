@@ -9,7 +9,7 @@ namespace Chug
 		int width{ 0 };
 		int height{ 0 };
 
-		Dimensions();
+		Dimensions() {};
 		Dimensions(int newWidth, int newHeight) : width(newWidth), height(newHeight) {};
 	};
 }

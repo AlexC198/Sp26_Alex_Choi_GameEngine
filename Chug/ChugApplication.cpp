@@ -8,6 +8,8 @@
 #include "stbi.h"
 
 #include "Picture.h"
+#include "Shader.h"
+
 namespace Chug
 {
 	void ChugApplication::Update()
@@ -33,10 +35,10 @@ namespace Chug
 		glEnable(GL_BLEND);
 
 		float data[] = {
-			-0.5f, -0.5f, 0.0f, 0.0f,	//bottom left
-			-0.5f,  0.5f, 0.0f, 1.0f, 	//upper left
-			 0.5f,  0.5f, 1.0f, 1.0f,  //upper right
-			 0.5f, -0.5f, 1.0f, 0.0f  //lower right
+			 0.0f,  0.0f, 0.0f, 0.0f,	//bottom left
+			 0.0f,  100.0f, 0.0f, 1.0f, 	//upper left
+			 100.0f,  100.0f, 1.0f, 1.0f,  //upper right
+			 100.0f, 0.0f, 1.0f, 0.0f  //lower right
 		};
 
 		unsigned int indices[] = {
@@ -62,82 +64,10 @@ namespace Chug
 		glGenBuffers(1, &EBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-		//Shaders//
-		const char* vertexSource = R"(
-			#version 330 core
-
-			layout (location = 0) in vec2 coords;
-			layout (location = 1) in vec2 tcoords;			
-
-			out vec2 texCoords;
-			
-			void main()
-			{
-			 texCoords = tcoords;
-			 gl_Position = vec4(coords.x,coords.y, 0, 1);
-			}
-		)";
-
-		unsigned int vertexShader{ 0 };
-		vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		int sourceSize{ sizeof(vertexSource) };
-		glShaderSource(vertexShader, 1, &vertexSource, NULL);
-		glCompileShader(vertexShader);
-
-		int success;
-		char infoLog[512];
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-		if (!success)
-		{
-			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-			CHUG_ERROR("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl);
-		}
-
-		const char* fragSource = R"(
-			#version 330 core
-
-			in vec2 texCoords;
-			out vec4 FragColor;
-			
-			uniform sampler2D picture;
-
-			void main()
-			{
-				FragColor = texture(picture, texCoords);
-			};
-		)";
-
-		unsigned int fragShader{ 0 };
-		fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragShader, 1, &fragSource, NULL);
-		glCompileShader(fragShader);
-
-		glGetShaderiv(fragShader, GL_COMPILE_STATUS, &success);
-
-		if (!success)
-		{
-			glGetShaderInfoLog(fragShader, 512, NULL, infoLog);
-			CHUG_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl);
-		}
-
-
-		unsigned int shaderProgram = glCreateProgram();
-		glAttachShader(shaderProgram, vertexShader);
-		glAttachShader(shaderProgram, fragShader);
-		glLinkProgram(shaderProgram);
-
-		glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-		if (!success)
-		{
-			glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-			CHUG_ERROR("ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl);
-		}
-		glDeleteShader(vertexShader);
-		glDeleteShader(fragShader);
 		
 		Picture pic{ "../Chug/Assets/Images/Character.png" };
-
+		Shader shader{ "../Chug/Assets/Shaders/defaultVertexShader.glsl", "../Chug/Assets/Shaders/defaultFragmentShader.glsl" };
+		shader.SupplyIntUniform("screenRes", { 600, 400 });
 		while (true)
 		{
 			glClearColor(0.5f, 0.5f, 0.0f, 1.0f);
@@ -145,7 +75,6 @@ namespace Chug
 
 			Update();
 
-			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO);
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 

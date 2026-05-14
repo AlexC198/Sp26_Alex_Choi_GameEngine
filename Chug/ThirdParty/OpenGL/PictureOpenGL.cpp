@@ -39,7 +39,7 @@ namespace Chug
 		stbi_image_free(pdata);
 	}
 
-	PictureOpenGL::LoadImage(const std::string& fileName)
+	void PictureOpenGL::LoadImage(const std::string& fileName)
 	{
 		//textures//
 		glGenTextures(1, &mTexture);
