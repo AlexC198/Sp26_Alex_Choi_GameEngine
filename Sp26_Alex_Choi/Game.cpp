@@ -5,7 +5,7 @@ class Game : public Chug::ChugApplication
 {
 	virtual void Update() override
 	{
-		CHUG_LOG("Running nicely!");
+		//CHUG_LOG("Running nicely!");
 	}
 };
 

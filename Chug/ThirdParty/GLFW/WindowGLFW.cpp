@@ -5,14 +5,14 @@
 
 namespace Chug
 {
-	void WindowGLFW::Create(Dimensions dimensions, const std::string & windowName)
+	void WindowGLFW::Create(Dimensions dimensions, const std::string& windowName)
 	{
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		GLFWwindow* window = glfwCreateWindow(
+		mWindowPtr = glfwCreateWindow(
 			dimensions.width, dimensions.height, windowName.c_str(), NULL, NULL);
 
 		if (mWindowPtr == nullptr)
@@ -22,6 +22,11 @@ namespace Chug
 			return;
 		}
 		glfwMakeContextCurrent(mWindowPtr);
+
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		{
+			CHUG_ERROR("Failed to initialize GLAD" << std::endl);
+		}
 	}
 
 	Dimensions WindowGLFW::GetSize() const

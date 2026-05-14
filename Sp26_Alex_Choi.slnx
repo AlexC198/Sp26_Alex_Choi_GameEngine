@@ -6,6 +6,8 @@
     <File Path="CMakeLists.txt" />
   </Folder>
   <Project Path="Chug/Chug.vcxproj" Id="bf1aec72-8843-4043-9246-698c48e075d5" />
+  <Project Path="glad/glad.vcxproj" Id="67f3d248-142e-4155-bc0e-546d3f56048b" />
   <Project Path="glfw_proj/src/glfw.vcxproj" Id="31b53ce5-bada-310d-91d2-e4ee1fc67c7a" />
   <Project Path="Sp26_Alex_Choi/Sp26_Alex_Choi.vcxproj" Id="7a984474-6935-48e9-91a8-31fcf323fbd1" />
+  <Project Path="stbi/stbi.vcxproj" Id="7d163e4f-9b04-4bf0-a01e-b76757ac1d36" />
 </Solution>
