@@ -2,6 +2,8 @@
 
 #include "ChugUtility.h"
 
+constexpr int FRAMES_PER_SECOND { 60 };
+
 namespace Chug
 {
 	class CHUG_API ChugApplication
@@ -16,5 +18,8 @@ namespace Chug
 		virtual ~ChugApplication();
 
 	private:
+		std::chrono::milliseconds mFrameDuration{ 1000 / FRAMES_PER_SECOND };
+		std::chrono::steady_clock::time_point mNextFrameTime;
+
 	};
 }

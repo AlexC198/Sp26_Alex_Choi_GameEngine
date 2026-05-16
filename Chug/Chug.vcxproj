@@ -141,10 +141,13 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Picture.h" />
     <ClInclude Include="PictureImplementation.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RendererImplementation.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderImplementation.h" />
     <ClInclude Include="ThirdParty\GLFW\WindowGLFW.h" />
     <ClInclude Include="ThirdParty\OpenGL\PictureOpenGL.h" />
+    <ClInclude Include="ThirdParty\OpenGL\RendererOpenGL.h" />
     <ClInclude Include="ThirdParty\OpenGL\ShaderOpenGL.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowImplementation.h" />
@@ -156,9 +159,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Picture.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ThirdParty\GLFW\WindowGLFW.cpp" />
     <ClCompile Include="ThirdParty\OpenGL\PictureOpenGL.cpp" />
+    <ClCompile Include="ThirdParty\OpenGL\RendererOpenGL.cpp" />
     <ClCompile Include="ThirdParty\OpenGL\ShaderOpenGL.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

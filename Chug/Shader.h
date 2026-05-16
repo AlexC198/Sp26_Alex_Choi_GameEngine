@@ -17,5 +17,7 @@ namespace Chug
 	private:
 		std::unique_ptr<ShaderImplementation> mImplementation;
 		void Bind();
+
+		friend class RendererOpenGL;
 	};
 }

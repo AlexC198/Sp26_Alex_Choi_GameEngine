@@ -19,5 +19,6 @@ namespace Chug
 		std::unique_ptr<PictureImplementation> mImplementation;
 		void Bind();
 
+		friend class RendererOpenGL;
 	};
 }
