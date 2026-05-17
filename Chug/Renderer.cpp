@@ -27,6 +27,17 @@ namespace Chug
 		mImplementation->Draw(pic, xCoord, yCoord, shader);
 	}
 
+	void Renderer::Draw(Unit& unit)
+	{
+		mDefaultShaders.SupplyIntUniform("screenRes", { Window::Get()->GetSize().width, Window::Get()->GetSize().height });
+		mImplementation->Draw(unit.mPicture, unit.mXpos, unit.mYpos, mDefaultShaders);
+	}
+
+	void Renderer::Draw(Unit& unit, Shader& shader)
+	{
+		mImplementation->Draw(unit.mPicture, unit.mXpos, unit.mYpos, shader);
+	}
+
 	void Renderer::ScreenClear()
 	{
 		mImplementation->ScreenClear();

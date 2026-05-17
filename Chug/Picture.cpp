@@ -22,6 +22,18 @@ namespace Chug
 		#only_opengl_is_supported
 #endif
 	}
+	
+	Picture::Picture(Picture&& other)  
+	{
+		mImplementation = move(other.mImplementation);
+	}
+
+	Picture& Picture::operator=(Picture&& other)
+	{
+		mImplementation = move(other.mImplementation);
+		return *this;
+	}
+
 
 	void Picture::LoadImage(const std::string& fileName)
 	{

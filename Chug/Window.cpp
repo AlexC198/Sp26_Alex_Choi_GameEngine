@@ -46,5 +46,15 @@ namespace Chug
 	{
 		mImplementation->PollEvents();
 	}
+
+	void Window::SetKeyCallback(std::function<void(const KeyEvent&)> newCallback)
+	{
+		mImplementation->SetKeyCallback(newCallback);
+	}
+
+	void Window::SetWindowCloseCallback(std::function<void(const WindowCloseEvent&)> newCallback)
+	{
+		mImplementation->SetWindowCloseCallback(newCallback);
+	}
 }
 

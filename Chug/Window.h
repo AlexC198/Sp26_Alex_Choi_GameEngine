@@ -4,6 +4,7 @@
 #include"WindowImplementation.h"
 #include "ChugUtility.h"
 #include "ChugTypes.h"
+#include "ChugEvents.h"
 
 namespace Chug
 {
@@ -18,6 +19,10 @@ namespace Chug
 
 		void SwapBuffers();
 		void PollEvents();
+
+		void SetKeyCallback(std::function<void(const KeyEvent&)> newCallback);
+		void SetWindowCloseCallback(std::function<void(const WindowCloseEvent&)> newCallback);
+
 	private:
 
 		Window();

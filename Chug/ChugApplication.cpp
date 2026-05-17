@@ -4,15 +4,26 @@
 #include "Window.h"
 
 #include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 #include "stbi.h"
 
 #include "Picture.h"
 #include "Shader.h"
 #include "Renderer.h"
-
+#include "KeyCodes.h"
+#include "Unit.h"
 namespace Chug
 {
+	ChugApplication::ChugApplication()
+	{
+		Window::Init();
+		Window::Get()->Create({ 1000,800 }, "Fall Game");
+
+		SetWindowCloseCallback([this](const WindowCloseEvent& event) {DefaultWindowCloseCallback(event); });
+
+		Renderer::Init();
+	}
 	void ChugApplication::Update()
 	{
 	}
@@ -27,27 +38,15 @@ namespace Chug
 
 	void ChugApplication::Run()
 	{
-		Window::Init();
-		Window::Get()->Create({ 1000,800 }, "Fall Game");
-
-		Renderer::Init();
-
 		Initialize();
-		
-		Picture pic{ "../Chug/Assets/Images/Character.png" };
-
-		int pos = 2;
-
+	
 		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 
-		while (true)
+		while (mShouldContinue)
 		{
 			Renderer::Get()->ScreenClear();
 
 			Update();
-
-			Renderer::Get()->Draw(pic, pos, 2);
-			pos++;
 
 			std::this_thread::sleep_until(mNextFrameTime);
 			mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
@@ -59,8 +58,22 @@ namespace Chug
 		Shutdown();
 	}
 
+	void ChugApplication::SetKeyCallback(std::function<void(const KeyEvent&)> newCallback)
+	{
+		Window::Get()->SetKeyCallback(newCallback);
+	}
+
+	void ChugApplication::SetWindowCloseCallback(std::function<void(const WindowCloseEvent&)> newCallback)
+	{
+		Window::Get()->SetWindowCloseCallback(newCallback);
+	}
 
 	ChugApplication::~ChugApplication()
 	{
+	}
+
+	void ChugApplication::DefaultWindowCloseCallback(const WindowCloseEvent&)
+	{
+		mShouldContinue = false;
 	}
 }

@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
+add_subdirectory(stbi) 
+add_subdirectory(glad)
 add_subdirectory(glfw)
 add_subdirectory(Chug)
 add_subdirectory(Sp26_Alex_Choi)

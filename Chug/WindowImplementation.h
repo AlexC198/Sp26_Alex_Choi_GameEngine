@@ -3,6 +3,7 @@
 #include "pch.h"
 
 #include "ChugTypes.h"
+#include "ChugEvents.h"
 
 namespace Chug
 {
@@ -14,6 +15,9 @@ namespace Chug
 
 		virtual void SwapBuffers() = 0;
 		virtual void PollEvents() = 0;
+
+		virtual void SetKeyCallback(std::function<void(const KeyEvent&)> newCallback) = 0;
+		virtual void SetWindowCloseCallback(std::function<void(const WindowCloseEvent&)> newCallback) = 0;
 
 		virtual ~WindowImplementation() {};
 	};
