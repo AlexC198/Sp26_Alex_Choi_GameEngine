@@ -18,7 +18,7 @@ namespace Chug
 	ChugApplication::ChugApplication()
 	{
 		Window::Init();
-		Window::Get()->Create({ 1000,800 }, "Fall Game");
+		Window::Get()->Create({ 2000,1600 }, "Fall Game");
 
 		SetWindowCloseCallback([this](const WindowCloseEvent& event) {DefaultWindowCloseCallback(event); });
 

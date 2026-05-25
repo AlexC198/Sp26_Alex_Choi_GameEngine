@@ -8,3 +8,6 @@
 #include<iostream>
 #include<fstream>
 #include<functional>
+#include<cmath>
+#include<cfloat>
+#include <cstdlib>
