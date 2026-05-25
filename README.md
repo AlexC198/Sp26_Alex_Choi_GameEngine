@@ -1,5 +1,5 @@
 The game I made for for the engine is a bullet hell survivor game. 
-Similar to Vampire survivor the famous game I based it on.
+Similar to Vampire survivor the famous game genre I based it on.
 The player spawns in the middle and enemies spawn from the edge of the screen and they walk towards you.
 The controls are WASD to move.
 W is up, A is left, S, is down and D is right.
